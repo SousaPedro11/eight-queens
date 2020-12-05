@@ -43,7 +43,7 @@ class BuscaNRainhas(Problema):
                 return False
             colunas_rainha.add(coluna)
             lc_delta.add(linha - coluna)
-            lc_delta.add(linha + coluna)
+            lc_soma.add(linha + coluna)
         return True
 
     def heuristica(self, estado) -> int:

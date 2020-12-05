@@ -1,5 +1,6 @@
 import argparse
 
+from app.analise_resultado.analise import hill_climbing_analise
 from app.busca_local.busca_local import BuscaLocal
 from app.busca_local.hill_climbing import hill_climbing_leatorio
 from app.busca_local.n_rainhas import BuscaNRainhas
@@ -20,16 +21,17 @@ def app():
                         help='0 - mostrar uma solução | 1 - mostrar todas as soluções')
     args = parser.parse_args()
     inicia_busca(args)
+    hill_climbing_analise()
 
 
 def inicia_busca(args):
     teste = BuscaLocal()
     problema = BuscaNRainhas(args.n)
     algoritmos = {
-        "Hill Climbing Aleatório": hill_climbing_leatorio
+        "Hill Climbing Aleatorio": hill_climbing_leatorio
     }
     problemas = [problema for i in algoritmos]
     for i in algoritmos.keys():
         print(i)
-        quadro = teste.busca(problemas[list(algoritmos).index(i)], algoritmos[i], args.i)
-        imprime_quadro(quadro, args.all)
+        quadro = teste.busca(problemas[list(algoritmos).index(i)], algoritmos[i], args.i, i.replace(' ', '_').lower())
+        # imprime_quadro(quadro, args.all)
